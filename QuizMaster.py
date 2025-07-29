@@ -113,7 +113,27 @@ def view_all_question():
             print(f"   {idx + 1}. {opt}")
         print(f"Correct Answer: {q['answer']}\n")
 
-            
+
+def delete_question():
+    if not questions:
+        print(" No questions to delete.\n")
+        return
+
+    print("\nDelete a Question")
+    for i, q in enumerate(questions):
+        print(f"{i + 1}. {q['question']}")
+
+    try:
+        choice = int(input("Enter the number of the question to delete: "))
+        if 1 <= choice <= len(questions):
+            removed = questions.pop(choice - 1)
+            print(f"Deleted: {removed['question']}\n")
+        else:
+            print("Invalid number. No question deleted.\n")
+    except ValueError:
+        print("nvalid input. Please enter a number.\n")
+
+         
 def menu():
     print("QuizMaster - Quiz System")
     print(".1 Add new question")
