@@ -13,7 +13,24 @@ def add_question():
         "answer": correct
     })
     print("Question added successfully.")
-    
+
+def start_quiz():
+    print("Welcome to the quiz!")
+    score = 0
+    for q in questions:
+        print(f"Question: {q['question']}")
+        for i in range(4):
+            print(f"{i + 1}. {q['options'][i]}")
+            answer = int(input("Enter your answer: ")) - 1
+            if answer == q['answer'] - 1:
+                score += 1
+                print("Correct answer!")
+            else:
+                print(f"Incorrect answer. The correct answer was {q['answer']}.")
+                print(f"Quiz finished. Your final score is {score} out of {len(questions)}")
+                
+                
+                
     
 def menu():
     print("QuizMaster - Quiz System")
@@ -31,3 +48,5 @@ while True:
     choice = input("Enter your choice: ")
     if choice == "1":
         add_question()
+    elif choice == "2":
+        start_quiz()
