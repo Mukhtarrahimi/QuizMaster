@@ -16,20 +16,23 @@ def add_question():
 
 def start_quiz():
     print("Welcome to the quiz!")
+    if not questions:
+        print("No questions available. Please add some questions first.")
     score = 0
-    for q in questions:
-        print(f"Question: {q['question']}")
-        for i in range(4):
-            print(f"{i + 1}. {q['options'][i]}")
-            answer = int(input("Enter your answer: ")) - 1
-            if answer == q['answer'] - 1:
-                score += 1
-                print("Correct answer!")
-            else:
-                print(f"Incorrect answer. The correct answer was {q['answer']}.")
-                print(f"Quiz finished. Your final score is {score} out of {len(questions)}")
-                
-                
+    for i, q in enumerate(questions):
+        print(f"Question {i+1}: {q['question']}")
+        for idx, opt in enumerate(q['question']):
+            print(f"{idx + 1}. {opt}")
+            try:
+                answer = int(input("Enter your answer: ")) - 1
+                if answer == q['answer'] - 1:
+                    score += 1
+                    print("Correct answer!")
+                else:
+                    print(f"Incorrect answer. The correct answer was {q['answer']}.")
+            except:
+                print("invalid input!")    
+    show_result(score, len(questions))
                 
     
 def menu():
