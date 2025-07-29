@@ -34,7 +34,19 @@ def start_quiz():
                 print("invalid input!")    
     show_result(score, len(questions))
                 
-    
+
+def show_result(score, total):
+    avg = (score / total) * 100
+    print("result of quiz!")
+    print(f"Your score is {score} out of {total} > {round(avg, 2)}%")
+    if avg > 90:
+        print("Great!")
+    elif avg > 70:
+        print("Good!")
+    else:
+        print("need to more try!")
+
+
 def menu():
     print("QuizMaster - Quiz System")
     print(".1 Add new question")
