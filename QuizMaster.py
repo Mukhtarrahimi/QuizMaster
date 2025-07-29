@@ -2,29 +2,55 @@ questions = [
     {
         "question": "What is the correct file extension for Python files?",
         "options": [".pt", ".py", ".pyt", ".python"],
-        "answer": 2  # .py
+        "answer": 2  
     },
     {
         "question": "Which data type is used to store text in Python?",
-        "options": ["int", "str", "bool", "float"],
-        "answer": 2  # str
+        "options": ["str", "int", "bool", "list"],
+        "answer": 1  
     },
     {
         "question": "How do you start a function in Python?",
-        "options": ["function myFunc():", "def myFunc():", "func myFunc():", "start myFunc():"],
-        "answer": 2  # def myFunc():
+        "options": ["function myFunc():", "func myFunc():", "start myFunc():", "def myFunc():"],
+        "answer": 4  
     },
     {
         "question": "Which keyword is used for a conditional statement in Python?",
-        "options": ["if", "for", "loop", "define"],
-        "answer": 1  # if
+        "options": ["while", "define", "if", "loop"],
+        "answer": 3  
     },
     {
         "question": "What will be the output of: print(type(3.5))?",
-        "options": ["<class 'int'>", "<class 'float'>", "<class 'str'>", "<class 'bool'>"],
-        "answer": 2  # float
+        "options": ["<class 'int'>", "<class 'str'>", "<class 'float'>", "<class 'bool'>"],
+        "answer": 3 
+    },
+    {
+        "question": "Which of the following is a loop in Python?",
+        "options": ["for", "define", "return", "select"],
+        "answer": 1  
+    },
+    {
+        "question": "Which symbol is used to start a comment in Python?",
+        "options": ["#", "//", "/*", "'"],
+        "answer": 1  
+    },
+    {
+        "question": "What is the correct way to create a variable with value 5?",
+        "options": ["x = 5", "int x = 5", "x := 5", "x ← 5"],
+        "answer": 1  
+    },
+    {
+        "question": "Which keyword is used to define a class in Python?",
+        "options": ["object", "struct", "define", "class"],
+        "answer": 4  
+    },
+    {
+        "question": "What is the correct way to output 'Hello World' in Python?",
+        "options": ["printf('Hello World')", "print('Hello World')", "cout << 'Hello World'", "echo('Hello World')"],
+        "answer": 2  
     }
 ]
+
 
 def add_question():
     print("Add a new question")
