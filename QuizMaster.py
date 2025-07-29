@@ -1,4 +1,31 @@
-questions = []
+questions = [
+    {
+        "question": "What is the correct file extension for Python files?",
+        "options": [".pt", ".py", ".pyt", ".python"],
+        "answer": 2  # .py
+    },
+    {
+        "question": "Which data type is used to store text in Python?",
+        "options": ["int", "str", "bool", "float"],
+        "answer": 2  # str
+    },
+    {
+        "question": "How do you start a function in Python?",
+        "options": ["function myFunc():", "def myFunc():", "func myFunc():", "start myFunc():"],
+        "answer": 2  # def myFunc():
+    },
+    {
+        "question": "Which keyword is used for a conditional statement in Python?",
+        "options": ["if", "for", "loop", "define"],
+        "answer": 1  # if
+    },
+    {
+        "question": "What will be the output of: print(type(3.5))?",
+        "options": ["<class 'int'>", "<class 'float'>", "<class 'str'>", "<class 'bool'>"],
+        "answer": 2  # float
+    }
+]
+
 def add_question():
     print("Add a new question")
     question_text = input("Enter your question: ")
