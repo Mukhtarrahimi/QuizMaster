@@ -18,20 +18,22 @@ def start_quiz():
     print("Welcome to the quiz!")
     if not questions:
         print("No questions available. Please add some questions first.")
+        return
     score = 0
     for i, q in enumerate(questions):
         print(f"Question {i+1}: {q['question']}")
-        for idx, opt in enumerate(q['question']):
+        for idx, opt in enumerate(q['options']):
             print(f"{idx + 1}. {opt}")
-            try:
-                answer = int(input("Enter your answer: ")) - 1
-                if answer == q['answer'] - 1:
-                    score += 1
-                    print("Correct answer!")
-                else:
-                    print(f"Incorrect answer. The correct answer was {q['answer']}.")
-            except:
-                print("invalid input!")    
+        try:
+            answer = int(input("Enter your answer: ")) - 1
+            if answer == q['answer'] - 1:
+                score += 1
+                print("Correct answer!\n")
+            else:
+                print(f"Incorrect answer. The correct answer was {q['answer']}.\n")
+        except:
+            print("Invalid input!\n")
+   
     show_result(score, len(questions))
                 
 
@@ -46,7 +48,19 @@ def show_result(score, total):
     else:
         print("need to more try!")
 
+def view_all_question():
+    if not questions:
+        print("no questions available.\n")
+        return
 
+    print("All Registered Questions:\n")
+    for i, q in enumerate(questions):
+        print(f"question {i+1}: {q['question']}")
+        for idx, opt in enumerate(q['options']):
+            print(f"   {idx + 1}. {opt}")
+        print(f"Correct Answer: {q['answer']}\n")
+
+            
 def menu():
     print("QuizMaster - Quiz System")
     print(".1 Add new question")
@@ -65,3 +79,5 @@ while True:
         add_question()
     elif choice == "2":
         start_quiz()
+    elif choice == "3":
+        view_all_question()
