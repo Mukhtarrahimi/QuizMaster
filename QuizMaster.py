@@ -150,9 +150,40 @@ def save_question():
     print("All questions saved to questions.txt\n")
 
         
-        
-    
-                
+def load_question():
+    global questions
+    questions = []
+
+    try:
+        with open("questions.txt", "r") as file:
+            lines = file.readlines()
+
+        q = {}
+        options = []
+
+        for line in lines:
+            line = line.strip()
+            if not line:
+                if q:
+                    q["options"] = options
+                    questions.append(q)
+                    q = {}
+                    options = []
+            elif line.startswith("Question:"):
+                q["question"] = line.replace("Question:", "").strip()
+            elif line.startswith("Option:"):
+                options.append(line.replace("Option:", "").strip())
+            elif line.startswith("Answer:"):
+                q["answer"] = line.replace("Answer:", "").strip()
+
+        if q:
+            q["options"] = options
+            questions.append(q)
+
+        print("Questions loaded from questions.txt\n")
+
+    except FileNotFoundError:
+        print("questions.txt not found.\n")
 
          
 def menu():
@@ -179,6 +210,12 @@ while True:
         delete_question()
     elif choice == "5":
         save_question()
+    elif choice == "6":
+        load_question()
     elif choice == "7":
         print("Exiting QuizMaster. Goodbye!")
         break
+    else:
+        print("Invalid choice. Please choose a valid option.")
+        menu()
+        
