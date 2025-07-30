@@ -132,6 +132,27 @@ def delete_question():
             print("Invalid number. No question deleted.\n")
     except ValueError:
         print("nvalid input. Please enter a number.\n")
+        
+def save_question():
+    if not questions:
+        print("No questions to save.\n")
+        return
+
+    print("\nSaving questions...")
+    with open("questions.txt", "w") as t:
+        for q in questions:
+            t.write(f"Question: {q['question']}\n")
+            for opt in q['options']:
+                t.write(f"Option: {opt}\n")
+            t.write(f"Answer: {q['answer']}\n")
+            t.write("\n")
+
+    print("All questions saved to questions.txt\n")
+
+        
+        
+    
+                
 
          
 def menu():
@@ -154,3 +175,10 @@ while True:
         start_quiz()
     elif choice == "3":
         view_all_question()
+    elif choice == "4":
+        delete_question()
+    elif choice == "5":
+        save_question()
+    elif choice == "7":
+        print("Exiting QuizMaster. Goodbye!")
+        break
