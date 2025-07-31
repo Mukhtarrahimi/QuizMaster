@@ -1,55 +1,7 @@
-questions = [
-    {
-        "question": "What is the correct file extension for Python files?",
-        "options": [".pt", ".py", ".pyt", ".python"],
-        "answer": 2  
-    },
-    {
-        "question": "Which data type is used to store text in Python?",
-        "options": ["str", "int", "bool", "list"],
-        "answer": 1  
-    },
-    {
-        "question": "How do you start a function in Python?",
-        "options": ["function myFunc():", "func myFunc():", "start myFunc():", "def myFunc():"],
-        "answer": 4  
-    },
-    {
-        "question": "Which keyword is used for a conditional statement in Python?",
-        "options": ["while", "define", "if", "loop"],
-        "answer": 3  
-    },
-    {
-        "question": "What will be the output of: print(type(3.5))?",
-        "options": ["<class 'int'>", "<class 'str'>", "<class 'float'>", "<class 'bool'>"],
-        "answer": 3 
-    },
-    {
-        "question": "Which of the following is a loop in Python?",
-        "options": ["for", "define", "return", "select"],
-        "answer": 1  
-    },
-    {
-        "question": "Which symbol is used to start a comment in Python?",
-        "options": ["#", "//", "/*", "'"],
-        "answer": 1  
-    },
-    {
-        "question": "What is the correct way to create a variable with value 5?",
-        "options": ["x = 5", "int x = 5", "x := 5", "x ← 5"],
-        "answer": 1  
-    },
-    {
-        "question": "Which keyword is used to define a class in Python?",
-        "options": ["object", "struct", "define", "class"],
-        "answer": 4  
-    },
-    {
-        "question": "What is the correct way to output 'Hello World' in Python?",
-        "options": ["printf('Hello World')", "print('Hello World')", "cout << 'Hello World'", "echo('Hello World')"],
-        "answer": 2  
-    }
-]
+import json
+with open("python_questions.json", "r", encoding="utf-8") as f:
+    questions = json.load(f)
+print(f"Loaded {len(questions)} questions.")
 
 
 def add_question():
@@ -57,15 +9,19 @@ def add_question():
     question_text = input("Enter your question: ")
     options = []
     for op in range(4):
-        op = input(f"option {op +1}:")
-        options.append(op)
-    correct = int(input("correct answer(1-4): ")) 
+        op_text = input(f"Option {op + 1}: ")
+        options.append(op_text)
+    correct = int(input("Correct answer (1-4): "))
+
+    new_id = questions[-1]['id'] + 1 if questions else 1
     questions.append({
+        "id": new_id,
         "question": question_text,
         "options": options,
         "answer": correct
     })
     print("Question added successfully.")
+
 
 def start_quiz():
     print("Welcome to the quiz!")
@@ -138,52 +94,21 @@ def save_question():
         print("No questions to save.\n")
         return
 
-    print("\nSaving questions...")
-    with open("questions.txt", "w") as t:
-        for q in questions:
-            t.write(f"Question: {q['question']}\n")
-            for opt in q['options']:
-                t.write(f"Option: {opt}\n")
-            t.write(f"Answer: {q['answer']}\n")
-            t.write("\n")
+    with open("python_questions.json", "w", encoding="utf-8") as f:
+        json.dump(questions, f, indent=2, ensure_ascii=False)
 
-    print("All questions saved to questions.txt\n")
+    print("All questions saved to python_questions.json\n")
+
 
         
 def load_question():
     global questions
-    questions = []
-
     try:
-        with open("questions.txt", "r") as file:
-            lines = file.readlines()
-
-        q = {}
-        options = []
-
-        for line in lines:
-            line = line.strip()
-            if not line:
-                if q:
-                    q["options"] = options
-                    questions.append(q)
-                    q = {}
-                    options = []
-            elif line.startswith("Question:"):
-                q["question"] = line.replace("Question:", "").strip()
-            elif line.startswith("Option:"):
-                options.append(line.replace("Option:", "").strip())
-            elif line.startswith("Answer:"):
-                q["answer"] = line.replace("Answer:", "").strip()
-
-        if q:
-            q["options"] = options
-            questions.append(q)
-
-        print("Questions loaded from questions.txt\n")
-
+        with open("python_questions.json", "r", encoding="utf-8") as f:
+            questions = json.load(f)
+        print("Questions loaded from python_questions.json\n")
     except FileNotFoundError:
-        print("questions.txt not found.\n")
+        print("python_questions.json not found.\n")
 
          
 def menu():
